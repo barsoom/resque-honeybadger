@@ -29,6 +29,9 @@ module Resque
             payload: payload,
           }
         )
+
+        # Force post to Honeybadger before Resque kills the forked process.
+        ::Honeybadger.flush
       end
     end
   end
