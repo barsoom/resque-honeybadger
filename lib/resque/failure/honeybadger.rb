@@ -11,7 +11,7 @@ module Resque
       end
 
       def save
-        notify_honeybadger || raise "Did you forget to set the honeybadger api key?" unless response
+        notify_honeybadger
       end
 
       private
