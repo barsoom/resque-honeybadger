@@ -21,17 +21,12 @@ module Resque
         # Read more: http://www.rubydoc.info/gems/honeybadger/Honeybadger#notify-instance_method
         ::Honeybadger.notify(
           exception,
-          context: {
-            tags: 'resque',
-            failed_at: Time.now.to_s,
-            queue: queue,
-            worker: worker.to_s,
-            payload: payload,
+          parameters: {
+            payload_class: payload['class'].to_s,
+            payload_args:  payload['args'].inspect,
+          }
           }
         )
-
-        # Force post to Honeybadger before Resque kills the forked process.
-        ::Honeybadger.flush
       end
     end
   end
