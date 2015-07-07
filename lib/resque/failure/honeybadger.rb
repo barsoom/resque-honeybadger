@@ -25,7 +25,6 @@ module Resque
             payload_class: payload['class'].to_s,
             payload_args:  payload['args'].inspect,
           }
-          }
         )
       end
     end
